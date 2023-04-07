@@ -6,9 +6,32 @@ const CustomError = require("../utils/customError");
 
 const needle = require("needle");
 
-const userId = "1304031667196104704";
+const userId = "1443953949627854854";
 const url = `https://api.twitter.com/2/users/${userId}/mentions`;
-// const url = "https://api.twitter.com/2/users/:rohan_2502";
+const url1 = "https://api.twitter.com/2/users/:hacktheleague";
+
+const gestch =async ( )=> {
+  const options = {
+    headers: {
+      "User-Agent": "v2UserMentionssJS",
+      authorization: `Bearer ${process.env.BEARER}`,
+    },
+  };
+  try {
+    const resp = await needle("get", url1, params, options);
+
+    if (resp.statusCode != 200) {
+      console.log(`${resp.statusCode} ${resp.statusMessage}:\n${resp.body}`);
+      // return;
+    }
+    // return resp.body;
+  } catch (err) {
+
+  }
+}
+
+
+
 
 // The code below sets the bearer token from your environment variables
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
@@ -17,6 +40,7 @@ const bearerToken = process.env.BEARER;
 
 // this is the ID for @TwitterDev
 const getUserMentions = async () => {
+  gestch();
   let userMentions = [];
   let params = {
     max_results: 100,
